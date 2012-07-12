@@ -9,7 +9,7 @@ describe "StaticPages" do
     
     it "should have the content 'Home'" do
       visit static_pages_home_path
-      page.should have_selector('h1', :text => "Home")
+      page.should have_selector('h1', :text => "Welcome to TimeStamp")
     end
   end
   
