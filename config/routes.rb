@@ -1,5 +1,7 @@
 Timestamp::Application.routes.draw do
-  devise_for :users
+  
+  # do this in case we want to use the Users controller ourselves
+  devise_for :users, :path => 'accounts'
 
   root :to => "static_pages#home"
   match "/help", :to => "static_pages#help"
