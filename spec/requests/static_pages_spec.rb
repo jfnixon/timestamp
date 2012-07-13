@@ -3,12 +3,12 @@ require 'spec_helper'
 describe "StaticPages" do
   describe "Home GET home_path" do   
     it "should have the title 'Home'" do
-      visit home_path
+      visit root_path
       page.should have_selector("title", :text => 'Home')
     end
     
-    it "should have the content 'Home'" do
-      visit home_path
+    it "should have the content 'Welcome'" do
+      visit root_path
       page.should have_selector('h1', :text => "Welcome to TimeStamp")
     end
   end
