@@ -5,6 +5,14 @@
   <h2>
     This is the home page for TimeStamp.
   </h2>
-  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+  <% if user_signed_in? %>
+    <div class="row">
+      <div class="well" id="drop_area">
+        <h2>Drag your file here!</h2>
+      </div>
+    </div>
+  <% else %>
+    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+  <% end %>
 </div>
 
