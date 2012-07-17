@@ -69,7 +69,18 @@ p {
   &:hover {
 	color: $white;
 	text-decoration: none;
+  }
 }
+
+#drop_area {
+	/*margin: 30px 0 30px 0; */
+	background: $white;
+	border: $grayDark 5px dashed;
+	padding: 60px 0 30px 0;
+}
+
+#root_drag_info {
+	
 }
 
 /* footer */
