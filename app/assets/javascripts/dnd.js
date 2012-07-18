@@ -32,7 +32,14 @@ function dropHandler(evt) {
 	alert("dropHandler fired for " + count + " files!");
 	
 	// Call the handler for each dropped file.
-	if (i = 0; i < count; i++) {}
+	if (i = 0; i < count; i++) {
+		if ($('div#drop_result').is(':visible')) {
+		        $('div#drop_result').hide();
+		}
+		if ($('div#drop_status').is(':hidden')) {
+		        $('div#drop_status').show();
+		}
+		$('span#drop_filename').innerHTML=files[i].name;
 		procFiles(files[i]);
 	}
 }
@@ -60,5 +67,10 @@ function handleReaderLoad(evt) {
 	hash = 1;
 	
 	// create the hash result and update the display
-	
+	if ($('div#drop_result').is(':hidden')) {
+	        $('div#drop_result').show();
+	}
+	$('span#result_filename').innerHTML = file.name;
+	$('span#result_datetime').innerHTML = 1;
+	$('span#result_hash') = hash;
 }
