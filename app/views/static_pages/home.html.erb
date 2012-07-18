@@ -10,6 +10,15 @@
       <div class="well" id="drop_area">
         <h2>Drag your file here!</h2>
       </div>
+      <div class="alert alert-info" id="drop_status" style="visibility: hidden; text-align: left;">
+        <button class="close" data-dismiss="alert">×</button>
+        Processing: <h4><span id="drop_filename"></span></h4>
+      </div>
+      <div id="drop_result" style="visibility: hidden; text-align: left;">
+        <p>File: <h4><span id="result_filename"></span></h4></p>
+        <p>Date: <h4><span id="result_datetime"></span></h4></p>
+        <p>Hash: <h4><span id="result_hash"></span></h4></p>
+      </div>
     </div>
   <% else %>
     <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
