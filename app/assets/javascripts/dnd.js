@@ -8,38 +8,38 @@
 $(document).ready(function() {
  
   // init event handlers
-  $("div#drop_area").get(0).addEventListener("dragenter", noopHandler, false);
-  $("div#drop_area").get(0).addEventListener("dragexit",  noopHandler, false);
-  $("div#drop_area").get(0).addEventListener("dragover",  noopHandler, false);
-  $("div#drop_area").get(0).addEventListener("drop",      dropHandler, false);
+  $('#drop_area').on("dragenter", noopHandler);
+  $('#drop_area').on("dragexit",  noopHandler);
+  $('#drop_area').on("dragover",  noopHandler);
+  $('#drop_area').on("drop",      dropHandler);
 });
 
 /* Stop propagation of DnD events */
 function noopHandler(evt) {
-  evt.stopPropagation();
-  evt.preventDefault();
+  evt.originalEvent.stopPropagation();
+  evt.originalEvent.preventDefault();
 }
 
 /* handle the dropped file */
 function dropHandler(evt) {
 
-	evt.stopPropagation();
-	evt.preventDefault();
+	evt.originalEvent.stopPropagation();
+	evt.originalEvent.preventDefault();
 	
-  var files = evt.dataTransfer.files;
+  var files = evt.originalEvent.dataTransfer.files;
 	var count = files.length;
 
 	alert("dropHandler fired for " + count + " files!");
 	
 	// Call the handler for each dropped file.
-	if (i = 0; i < count; i++) {
+	for (i = 0; i < count; i++) {
 		if ($('div#drop_result').is(':visible')) {
 		        $('div#drop_result').hide();
 		}
 		if ($('div#drop_status').is(':hidden')) {
 		        $('div#drop_status').show();
 		}
-		$('span#drop_filename').innerHTML=files[i].name;
+		$('span#drop_filename').innerHTML = files[i].name;
 		procFiles(files[i]);
 	}
 }
@@ -60,7 +60,7 @@ function procFiles(file) {
 
 /* process the file, when we show up here, the file is Base64 encoded */
 function handleReaderLoad(evt) {
-	file = evt.target.result;
+	file = evt.originalEvent.target.result;
 	
 	// pass this off to the Hash function
 	
@@ -72,5 +72,5 @@ function handleReaderLoad(evt) {
 	}
 	$('span#result_filename').innerHTML = file.name;
 	$('span#result_datetime').innerHTML = 1;
-	$('span#result_hash') = hash;
+	$('span#result_hash').innerHTML = hash;
 }
