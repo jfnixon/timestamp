@@ -29,19 +29,20 @@ function dropHandler(evt) {
   var files = evt.originalEvent.dataTransfer.files;
 	var count = files.length;
 
-	alert("dropHandler fired for " + count + " files!");
-	
+	var output = [];
 	// Call the handler for each dropped file.
-	for (i = 0; i < count; i++) {
-		if ($('div#drop_result').is(':visible')) {
-		        $('div#drop_result').hide();
-		}
-		if ($('div#drop_status').is(':hidden')) {
-		        $('div#drop_status').show();
-		}
-		$('span#drop_filename').innerHTML = files[i].name;
-		procFiles(files[i]);
+	for (var i = 0; i < count; i++) {
+		//if ($('div#drop_result').is(':visible')) {
+		//        $('div#drop_result').hide();
+		//}
+		//if ($('div#drop_status').is(':hidden')) {
+		//        $('div#drop_status').show();
+		//}    
+		var f = files[i];
+		output.push('<li><strong>', f.name, '</strong> (', f.type || 'n/a', ') - ', f.size, ' bytes</li>');
+    procFiles(f);
 	}
+	$('#drop_status').html('<ul>' + output.join('') + '</ul>');
 }
 
 /* do the file processing, first, read the file in, then trigger the processing in handleReaderLoad */
@@ -60,17 +61,9 @@ function procFiles(file) {
 
 /* process the file, when we show up here, the file is Base64 encoded */
 function handleReaderLoad(evt) {
-	file = evt.originalEvent.target.result;
-	
-	// pass this off to the Hash function
-	
-	hash = 1;
+		
+	hash = hex_sha512(evt.target.result)
 	
 	// create the hash result and update the display
-	if ($('div#drop_result').is(':hidden')) {
-	        $('div#drop_result').show();
-	}
-	$('span#result_filename').innerHTML = file.name;
-	$('span#result_datetime').innerHTML = 1;
-	$('span#result_hash').innerHTML = hash;
+	$('#drop_result').html('<p><b>Hash: </b>' + hash + '</p>');
 }
