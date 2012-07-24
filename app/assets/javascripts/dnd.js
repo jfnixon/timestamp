@@ -54,10 +54,10 @@ function dropHandler(evt) {
 			  var hash = hex_sha512(e.target.result);
 			  var output = [];
 			
-			  output.push('<li><strong>', file.name, '</strong> (', file.type || 'n/a', ') - ', file.size, ' bytes</li>');
-			  // create the hash result and update the display
-			  $('#drop_result').append('<p><b>Hash: </b>' + hash + '</p>');			
-			  $('#drop_status').append('<ul>' + output.join('') + '</ul>');
+			  output.push('<div class=\'results\'><button class=\'btn btn-primary\' style=\'float: right\'>Remember</button>');
+			  output.push('<p>File: <strong>', file.name, '</strong> (', file.type || 'n/a', ') - ');
+			  output.push(file.size, ' bytes</p><p>Hash: ', hash, '</p></div>');			
+			  $('#drop_result').append(output.join(''));
 		  };
 		})(f);
 
