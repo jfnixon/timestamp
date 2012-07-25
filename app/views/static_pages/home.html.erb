@@ -10,8 +10,17 @@
       <div class="well" id="drop_area">
         <h2>Drag your file here!</h2>
       </div>
-      <div id="drop_result">
-      </div>
+      <table id="drop_result" class="table table-bordered table-striped" style="visibility: hidden">
+        <thead>
+          <tr>
+            <th class = "span1">Save in account</th>
+            <th class = "span8">File Name</th>
+            <th class = "span2">File Type</th>
+          </tr>
+        </thead>
+        <tbody id="drop_table">
+        </tbody>  
+      </table>
     </div>
   <% else %>
     <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>

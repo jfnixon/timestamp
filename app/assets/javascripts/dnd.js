@@ -41,6 +41,11 @@ function dropHandler(evt) {
 
   var files = evt.originalEvent.dataTransfer.files;
 	var count = files.length;
+	
+	// turn on the table
+	if ($('#drop_result').css('visibility') == 'hidden') {
+		$('#drop_result').css('visibility', 'visible');
+	};
 
 	// Issue an async read for each dropped file.
 	// Precess the file when the read completes.
@@ -54,9 +59,10 @@ function dropHandler(evt) {
 			  var hash = hex_sha512(e.target.result);
 			  var output = [];
 			
-			  output.push('<div class=\'results\'><button class=\'btn btn-primary\' style=\'float: right\'>Remember</button>');
-			  output.push('<p>File: <strong>', file.name, '</strong> (', file.type || 'n/a', ') - ');
-			  output.push(file.size, ' bytes</p><p>Hash: ', hash, '</p></div>');			
+			  output.push('<tr><td><button class=\'btn btn-primary\'>Save</button></td>');
+			  output.push('<td><strong>', file.name, '</strong></td><td>', file.type || 'n/a', '</td>');
+			  output.push('<tdd class=\'td_size\' style=\'visibility: hidden\'>', file.size, '</td>');
+			  output.push('<tdd class=\'td_hash\' style=\'visibility: hidden\'>', hash, '</td></tr>');			
 			  $('#drop_result').append(output.join(''));
 		  };
 		})(f);
