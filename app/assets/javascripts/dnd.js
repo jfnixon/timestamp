@@ -59,11 +59,12 @@ function dropHandler(evt) {
 			  var hash = hex_sha512(e.target.result);
 			  var output = [];
 			
-			  output.push('<tr><td><button class=\'btn btn-primary\'>Save</button></td>');
+			  output.push('<tr><td><button class=\'btn btn-danger\'>Remove</button></td>');
 			  output.push('<td><strong>', file.name, '</strong></td><td>', file.type || 'n/a', '</td>');
 			  output.push('<tdd class=\'td_size\' style=\'visibility: hidden\'>', file.size, '</td>');
 			  output.push('<tdd class=\'td_hash\' style=\'visibility: hidden\'>', hash, '</td></tr>');			
 			  $('#drop_result').append(output.join(''));
+				$('#drop_result').find('tr:last').find('button').click(function() {$this.parent().parent().remove();})
 		  };
 		})(f);
 
